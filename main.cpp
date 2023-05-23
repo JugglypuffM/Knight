@@ -6,7 +6,7 @@
 using namespace std;
 
 string to_string (const Vector &v){
-    return to_string((int)v.x) + " " + to_string((int)v.y);
+    return string() + (char)(v.x + 'a') + (char)(v.y + '1');
 }
 
 void print_way(const Vector&begin, const Vector&end, int** table, Vector*dir){
@@ -21,13 +21,15 @@ void print_way(const Vector&begin, const Vector&end, int** table, Vector*dir){
     cout << way << endl;
 }
 
-
 int main(){
+    string s, f;
+    cin >> s >> f;
     Vector start, finish;
-    cin >> start.x >> start.y;
-    start.z = 0;
-    cin >> finish.x >> finish.y;
-    finish.z = 0;
+    start.x = s[0] - 'a';
+    finish.x = f[0] - 'a';
+    start.y = s[1] - '1';
+    finish.y = f[1] - '1';
+    start.z = finish.z = 0;
     queue<Vector>q;
     q.push(start);
     int** table = new int*[8];
@@ -54,5 +56,4 @@ int main(){
         }
 
     }
-
 }
